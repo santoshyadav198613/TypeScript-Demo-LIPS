@@ -1,10 +1,13 @@
+import { CalculatorService } from './calculator.service';
+import { IAddress } from './IAddress'
+
 class Employee implements IEmployee {
     firstName: string;
     lastName: string;
     age: number;
     dob: Date;
     address: IAddress;
-    
+
     constructor(private calc: CalculatorService, firstName: string, lastName: string) {
         this.firstName = firstName;
         this.lastName = lastName;
@@ -27,7 +30,8 @@ class Employee implements IEmployee {
     }
 }
 
-let empl = new Employee('test', 'test2');
+let calcService = new CalculatorService();
+let empl = new Employee(calcService, 'test', 'test2');
 
 empl.age = 10;
 // empl.address.addressLine1 = 'pune';
@@ -44,26 +48,7 @@ interface IEmployee {
     Delete();
 }
 
-interface IAddress {
-    addressLine1: string;
-    addressLine2: string;
-    city: string;
-    zip: number;
-}
 
 
 
-class CalculatorService {
-    add(num1: number, num2?: number) {
-        return num1 + num2;
-    }
 
-    sub(num1: number, num2: number) {
-        return num1 - num2;
-    }
-
-    mul(num1: number, num2: number) {
-        return num1 * num2;
-    }
-
-}
